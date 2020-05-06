@@ -10,7 +10,8 @@ class Agent:
         learn
         save
         load
-    These methods must be implemented, and can be publicly accessed.
+    These methods must be implemented(except train, eval, save, load)
+    and can be publicly accessed.
     """
     def __init__(self, n_obs, n_act):
         """
@@ -24,13 +25,13 @@ class Agent:
         """
         indicating that the agent should work on training mode.
         """
-        raise NotImplementedError
+        return
 
     def eval(self):
         """
         indicating that the agent should work on eval mode, not caring about training
         """
-        raise NotImplementedError
+        return
 
     def reset(self):
         """
@@ -64,11 +65,11 @@ class Agent:
         :param dir: (str)
         :param name: agent's name
         """
-        raise NotImplementedError
+        return
 
     def load(self, path):
         """
         load pre-trained parameters of the agent
         :param path: (str)
         """
-        raise NotImplementedError
+        return

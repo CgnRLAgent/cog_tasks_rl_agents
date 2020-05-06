@@ -4,9 +4,9 @@ from LSTM.LSTM_model import Agent_LSTM
 from common.utils import train, test
 
 
-env = gym.make('Simple_Copy-v0', n_char=5, len_range=(4,20))
+env = gym.make('Simple_Copy-v0', n_char=5, size=20)
 
-N_tr = 500
+N_tr = 300
 N_tst = 100
 n_hidden = 10
 lr = 0.01
