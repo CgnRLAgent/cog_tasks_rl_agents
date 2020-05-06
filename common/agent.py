@@ -57,10 +57,12 @@ class Agent:
         """
         raise NotImplementedError
 
-    def save(self, path):
+    def save(self, dir, name):
         """
-        save the agent's parameters to the specified path
-        :param path: (str)
+        save the agent's parameters and configs to the specified path
+        2 saved files, ${name}_params, ${name}_configs
+        :param dir: (str)
+        :param name: agent's name
         """
         raise NotImplementedError
 

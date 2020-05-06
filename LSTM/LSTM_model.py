@@ -2,6 +2,8 @@ import torch
 import torch.nn as nn
 from torch.optim import Adam
 from common.agent import Agent
+import os
+import json
 
 
 class Agent_LSTM(Agent):
@@ -19,6 +21,7 @@ class Agent_LSTM(Agent):
         self.is_training = False
         self.criterion = nn.CrossEntropyLoss()
         self.optimizer = Adam(self.model.parameters(), lr=lr)
+        self.lr = lr
 
     def _obs2input(self, obs):
         return self.embedding[obs:obs+1]  # (1, n_obs)
@@ -51,13 +54,23 @@ class Agent_LSTM(Agent):
         self.optimizer.step()
         self.optimizer.zero_grad()
 
-    def save(self, path):
-        #TODO
-        return
+    def save(self, dir, name):
+        if not os.path.exists(dir):
+            os.mkdir(dir)
+        params_path = os.path.join(dir, name)
+        torch.save(self.model.state_dict(), params_path)
+        configs_path = os.path.join(dir, name+'_configs.json')
+        configs = {
+            "n_obs": self.n_obs,
+            "n_act": self.n_act,
+            "n_hidden": self.n_hidden,
+            "lr": self.lr
+        }
+        with open(configs_path, "w") as f:
+            json.dump(configs, f)
 
-    def load(self, path):
-        # TODO
-        return
+    def load(self, path, device='cpu'):
+        self.model.load_state_dict(torch.load(path, map_location=device))
 
 
 class LSTModel(nn.Module):
