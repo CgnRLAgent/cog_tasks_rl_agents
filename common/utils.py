@@ -5,13 +5,14 @@ from time import time
 import os
 
 
-def train(env, agent, N, print_progress=True, seed=None, timing_interval=10):
+def train(env, agent, N, custom_reward=None, print_progress=True, seed=None, timing_interval=10):
     """
     record every episode's reward, action accuracy (if target action is given),
     and accumulative time cost.
     :param env:
     :param agent:
     :param N:
+    :param custom_reward: [number func(reward)] input the reward from env, output the modified reward
     :param print_progress:
     :param seed:
     :param timing_interval: timing every k iterations
@@ -43,6 +44,8 @@ def train(env, agent, N, print_progress=True, seed=None, timing_interval=10):
         while not done:
             action = agent.respond(obs)
             next_obs, reward, done, info = env.step(action)
+            if custom_reward is not None:
+                reward = custom_reward(reward)
             target_act = info["target_act"] if "target_act" in info else None
             agent.learn(obs, action, reward, done, target_act)
             obs = next_obs
