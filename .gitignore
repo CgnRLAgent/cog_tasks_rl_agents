@@ -4,6 +4,9 @@ __pycache__/
 *$py.class
 .idea
 
+# train results
+save/
+
 # C extensions
 *.so
 
