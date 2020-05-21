@@ -7,8 +7,7 @@ from sklearn.metrics import balanced_accuracy_score, f1_score
 
 def train(env, agent, N, custom_reward=None, print_progress=True, seed=None):
     """
-    record every episode's reward, action accuracy (if target action is given),
-    and accumulative time cost.
+    record every episode's reward, action accuracy and f1 over iteration.
     :param env:
     :param agent:
     :param N:
@@ -80,7 +79,7 @@ def load_train_res(path):
     return r[0], r[1], r[2]
 
 
-def train_results_plots(dir, figname, names, numbers):
+def train_results_plots(dir, figname, names, numbers, smooth=51):
     """
     plots training results with iterations: rewards, accuracies, f1-score (every n iterations)
     :param dir: save the figures to
@@ -91,13 +90,24 @@ def train_results_plots(dir, figname, names, numbers):
     if not os.path.exists(dir):
         os.mkdir(dir)
     figname = os.path.join(dir, figname)
+
+    def _smooth(p):
+        r = (smooth-1) // 2
+        sp = p[:]
+        size = len(p)
+        for i in range(size):
+            begin = np.max([0, i-r])
+            end = np.min([size-1, i+r]) + 1
+            sp[i] = np.mean(p[begin:end])
+        return sp
+
     # plot rewards
     plt.figure(figsize=(14, 8))
     rewards = [x[0] for x in numbers]
     assert len(rewards) == len(names)
     plt.title('Rewards')
     for r in rewards:
-        plt.plot(r)
+        plt.plot(_smooth(r))
     plt.legend(names, loc='lower right')
     plt.xlabel('iterations')
     plt.savefig(figname + '_rewards.jpg')
@@ -107,7 +117,7 @@ def train_results_plots(dir, figname, names, numbers):
     assert len(accs) == len(names)
     plt.title('Accuracy')
     for a in accs:
-        plt.plot(a)
+        plt.plot(_smooth(a))
     plt.legend(names, loc='lower right')
     plt.xlabel('iterations')
     plt.savefig(figname + '_accs.jpg')
@@ -117,7 +127,7 @@ def train_results_plots(dir, figname, names, numbers):
     assert len(f1) == len(names)
     plt.title('F1-score')
     for f in f1:
-        plt.plot(f)
+        plt.plot(_smooth(f))
     plt.legend(names, loc='lower right')
     plt.xlabel('iterations')
     plt.savefig(figname + '_f1.jpg')
