@@ -4,10 +4,10 @@ from LSTM.LSTM_model import Agent_LSTM
 from common.utils import train, test, save_train_res, load_train_res, train_results_plots
 
 
-env = gym.make('12AX_CPT-v0', size=200)
+env = gym.make('12AX_CPT-v0', size=100)
 
-N_tr = 5000
-N_tst = 500
+N_tr = 1000
+N_tst = 100
 n_hidden = 50
 lr = 0.01
 agent = Agent_LSTM(env.observation_space.n, env.action_space.n, n_hidden, lr)
