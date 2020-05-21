@@ -7,13 +7,12 @@ import json
 
 
 class Agent_LSTM(Agent):
-    def __init__(self, n_obs, n_act, n_hidden, lr=0.01):
+    def __init__(self, n_obs, n_act, n_hidden, lr=0.01, n_layers=1):
         super(Agent_LSTM, self).__init__(n_obs, n_act)
         self.n_hidden = n_hidden
-        # one-hot features of the observations, fixed
-        self.embedding = torch.eye(n_obs)
+        self.n_layers = n_layers
         # LSTM as a classifier | action predictor
-        self.model = LSTModel(n_obs, n_hidden, n_act)
+        self.model = LSTModel(n_obs, n_hidden, n_act, n_layers)
         # internal memory
         self.last_states = None
         self.last_output = None
@@ -22,9 +21,6 @@ class Agent_LSTM(Agent):
         self.criterion = nn.CrossEntropyLoss()
         self.optimizer = Adam(self.model.parameters(), lr=lr)
         self.lr = lr
-
-    def _obs2input(self, obs):
-        return self.embedding[obs:obs+1]  # (1, n_obs)
 
     def train(self):
         self.model.train()
@@ -36,14 +32,15 @@ class Agent_LSTM(Agent):
 
     def reset(self):
         self.last_states = None
+        self.last_output = None
 
     def respond(self, obs):
-        inputs = self._obs2input(obs)
+        x = torch.tensor([obs])
         if self.is_training:
-            output, self.last_states = self.model(inputs, self.last_states)
+            output, self.last_states = self.model(x, self.last_states)
         else:
             with torch.no_grad():
-                output, self.last_states = self.model(inputs, self.last_states)
+                output, self.last_states = self.model(x, self.last_states)
         self.last_output = output
         action = output.argmax().item()
         return action
@@ -74,13 +71,28 @@ class Agent_LSTM(Agent):
 
 
 class LSTModel(nn.Module):
-    def __init__(self, input_size, hidden_size, ouput_size):
+    def __init__(self, input_size, hidden_size, ouput_size, n_layers=1):
         super(LSTModel, self).__init__()
-        # LSTM cell with a linear layer as a classifier | action predictor. learnable
-        self.cell = nn.LSTMCell(input_size, hidden_size)
+        self.embedding = nn.Embedding(input_size, hidden_size)
+        # LSTM layers with a linear layer as a classifier(action predictor)
+        self.layers = nn.ModuleList([nn.LSTMCell(hidden_size, hidden_size) for _ in range(n_layers)])
         self.linear = nn.Linear(hidden_size, ouput_size)
 
     def forward(self, x, last_states=None):
-        hs, cs = self.cell(x, last_states)
-        output = self.linear(hs)
-        return output, (hs, cs)
+        N = len(self.layers)
+        if last_states is not None:
+            assert len(last_states) == N
+        else:
+            last_states = [None] * N
+
+        states = []
+        hin = self.embedding(x)
+
+        for n in range(N):
+            lstm = self.layers[n]
+            ht, ct = lstm(hin, last_states[n])
+            states.append((ht, ct))
+            hin = ht
+
+        output = self.linear(states[-1][0])
+        return output, states
