@@ -13,5 +13,5 @@ lr = 0.01
 
 agent = Agent_LSTM(env.observation_space.n, env.action_space.n, n_hidden, lr)
 
-train(env, agent, N_tr)
+train(env, agent, N_tr, custom_reward=lambda r: r*10)
 test(env, agent, N_tst)

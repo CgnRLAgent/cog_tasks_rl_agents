@@ -6,8 +6,8 @@ from common.utils import train, test, save_train_res, load_train_res, train_resu
 
 env = gym.make('AX_CPT-v0', size=50)
 
-N_tr = 5000
-N_tst = 500
+N_tr = 500
+N_tst = 100
 n_hidden = 50
 lr = 0.01
 agent = Agent_LSTM(env.observation_space.n, env.action_space.n, n_hidden, lr)
