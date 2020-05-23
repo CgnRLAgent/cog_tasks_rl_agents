@@ -139,7 +139,7 @@ def test(env, agent, N, print_progress=True, seed=None):
     :param agent:
     :param N:
     :param print_progress:
-    :return: avg_reward, avg_accuracy, avg_f1
+    :return: avg_reward, avg_accuracy, avg_f1, eps_acc
     """
     if seed is not None:
         np.random.seed(seed)
@@ -151,6 +151,7 @@ def test(env, agent, N, print_progress=True, seed=None):
     rewards = []
     accs = []
     f1 = []
+    eps_acc = 0  # accuracy of episodes
 
     for i in range(1, N + 1):
         if print_progress:
@@ -162,6 +163,7 @@ def test(env, agent, N, print_progress=True, seed=None):
         ep_reward = 0.
         ep_act_target = []
         ep_act_agent = []
+        ep_correct = True
 
         while not done:
             action = agent.respond(obs)
@@ -172,12 +174,16 @@ def test(env, agent, N, print_progress=True, seed=None):
             ep_reward += reward
             ep_act_agent.append(action)
             ep_act_target.append(target_act)
+            if target_act != action:
+                ep_correct = False
 
         rewards.append(ep_reward)
         ep_acc = balanced_accuracy_score(ep_act_target, ep_act_agent)
         accs.append(ep_acc)
         ep_f1 = f1_score(ep_act_target, ep_act_agent, average='macro')
         f1.append(ep_f1)
+        if ep_correct:
+            eps_acc += 1
 
         if print_progress:
             env.render()
@@ -185,8 +191,9 @@ def test(env, agent, N, print_progress=True, seed=None):
     avg_reward = np.mean(rewards)
     avg_acc = np.mean(accs)
     avg_f1 = np.mean(f1)
+    eps_acc /= N
 
     print('\ntest end.')
-    print('avg reward: %.2f, avg accuracy: %.4f, avg f1: %.4f' % (avg_reward, avg_acc, avg_f1))
+    print('episode accuracy: %.2f, avg reward: %.2f, avg accuracy: %.4f, avg f1: %.4f' % (eps_acc, avg_reward, avg_acc, avg_f1))
 
     return avg_reward, avg_acc, avg_f1
