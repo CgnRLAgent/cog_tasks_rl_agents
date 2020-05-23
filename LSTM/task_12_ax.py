@@ -8,7 +8,7 @@ torch.manual_seed(123)
 
 env = gym.make('12_AX-v0', size=10, prob_target=0.5)
 
-N_tr = 500
+N_tr = 1000
 N_tst = 1000
 
 n_hidden = 10
