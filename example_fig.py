@@ -7,6 +7,6 @@ from common.utils import load_train_res, train_results_plots
 # train_results_plots(dir='./fig/', figname='12_ax', names=['LSMT_1', 'LSTM_2', 'LSTM_3'], \
 #                     numbers=[res_1, res_2, res_3])
 
-res = load_train_res('./LSTM/save/12_ax/LSTM.npy')
-train_results_plots(dir='./fig/', figname='12_ax', names=['LSMT'], \
+res = load_train_res('./LSTM/save/ax_cpt/LSTM.npy')
+train_results_plots(dir='./fig/', figname='ax_cpt', names=['LSTM'], \
                     numbers=[res])
