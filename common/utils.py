@@ -44,7 +44,7 @@ def train(env, agent, N, custom_reward=None, print_progress=True, seed=None):
             if custom_reward is not None:
                 reward = custom_reward(reward)
             target_act = info["target_act"]
-            agent.learn(obs, action, reward, done, target_act)
+            agent.learn(obs, next_obs, action, reward, done, target_act)
             obs = next_obs
             # record
             ep_reward += reward
@@ -194,6 +194,6 @@ def test(env, agent, N, print_progress=True, seed=None):
     eps_acc /= N
 
     print('\ntest end.')
-    print('episode accuracy: %.2f, avg reward: %.2f, avg accuracy: %.4f, avg f1: %.4f' % (eps_acc, avg_reward, avg_acc, avg_f1))
+    print('episode accuracy: %.3f, avg reward: %.3f, avg accuracy: %.4f, avg f1: %.4f' % (eps_acc, avg_reward, avg_acc, avg_f1))
 
     return avg_reward, avg_acc, avg_f1
