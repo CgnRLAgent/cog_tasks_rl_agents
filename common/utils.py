@@ -44,7 +44,7 @@ def train(env, agent, N, custom_reward=None, print_progress=True, seed=None):
             if custom_reward is not None:
                 reward = custom_reward(reward)
             target_act = info["target_act"]
-            agent.learn(obs, action, reward, done, target_act)
+            agent.learn(obs, next_obs, action, reward, done, target_act)
             obs = next_obs
             # record
             ep_reward += reward
