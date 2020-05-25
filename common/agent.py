@@ -47,14 +47,15 @@ class Agent:
         """
         raise NotImplementedError
 
-    def learn(self, obs, action, reward, done, target_act=None):
+    def learn(self, obs, next_obs, action, reward, done, target_act=None):
         """
         after responding to an observation, agent can learn from the rewards or golden action(if has).
         :param obs: (int)
-        :param action: the agent's action reponding to the observation. (int)
+        :param next_obs: (int) after the agent take the action, the next obs that the env returns
+        :param action: the agent's action responding to the observation. (int)
         :param reward:
         :param done: if the episode is end after taking the action.
-        :param target_act: the golden action responding to the observation.
+        :param target_act: the golden action (if has) responding to the observation.
         """
         raise NotImplementedError
 
