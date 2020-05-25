@@ -8,10 +8,10 @@ torch.manual_seed(123)
 
 env = gym.make('Simple_Copy_Repeat-v0', n_char=5, size=10, repeat=3)
 
-N_tr = 60000
+N_tr = 100000
 N_tst = 1000
 
-n_hidden = 50
+n_hidden = 30
 n_layers = 2
 lr = 0.001
 agent = Agent_LSTM(env.observation_space.n, env.action_space.n, n_hidden, lr, n_layers)

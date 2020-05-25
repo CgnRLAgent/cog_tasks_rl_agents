@@ -49,7 +49,7 @@ class Agent_LSTM(Agent):
         action = output.argmax().item()
         return action
 
-    def learn(self, obs, action, reward, done, target_act):
+    def learn(self, obs, next_obs, action, reward, done, target_act):
         loss = self.criterion(self.last_output, torch.tensor([target_act]))
         loss.backward(retain_graph=True)
         self.optimizer.step()
