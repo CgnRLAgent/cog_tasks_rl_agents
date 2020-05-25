@@ -12,7 +12,12 @@ What is unknown:
 * The performance of machine learning agent on cognitive task
 * The performance of the cognitive agent on machine learningtask.
 
+## Usage
+All agents inherit from the basic `Agent` class in [agent.py](common/agent.py). If you want to use the agents to train on any of the gym environment, please see the [example.py](example.py).
+
+
 ## Agents
+5 agents are implemented in this project:
 * AuGMEnT
 * LSTM
 * DQN
@@ -21,13 +26,14 @@ What is unknown:
 
 ## Tasks
 Implemented in the OpenAI gym style. They are put in a independent repo [here](https://github.com/CgnRLAgent/cog_ml_tasks).
-* 1_2AX (custom)
-* 1_2AX_S (custom)
-* AX_CPT (custom)
-* Copy (gym)
-* Copy_repeat (gym)
-* Saccades (custom)
-* Seq_prediction
+* 12_AX
+* 12_AX_S
+* AX_CPT
+* 12_AX_CPT
+* Copy
+* Copy_repeat
+* Saccades
+* Sequential Prediction
 
 ## Benchmark
 Every agent is trained and evaluated on each of the tasks.
