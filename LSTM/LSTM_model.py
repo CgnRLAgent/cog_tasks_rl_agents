@@ -5,6 +5,8 @@ from common.agent import Agent
 import os
 import json
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 
 class Agent_LSTM(Agent):
     def __init__(self, n_obs, n_act, n_hidden, lr=0.01, n_layers=1):
@@ -13,6 +15,8 @@ class Agent_LSTM(Agent):
         self.n_layers = n_layers
         # LSTM as a classifier | action predictor
         self.model = LSTModel(n_obs, n_hidden, n_act, n_layers)
+        self.model.to(device)
+        print("Agent work on %s" % device)
         # internal memory
         self.last_states = None
         self.last_output = None
@@ -35,17 +39,17 @@ class Agent_LSTM(Agent):
         self.last_output = None
 
     def respond(self, obs):
-        x = torch.tensor([obs])
+        x = torch.tensor([obs]).to(device)
         if self.is_training:
             output, self.last_states = self.model(x, self.last_states)
         else:
             with torch.no_grad():
                 output, self.last_states = self.model(x, self.last_states)
-        self.last_output = output
+        self.last_output = output.to('cpu')
         action = output.argmax().item()
         return action
 
-    def learn(self, obs, action, reward, done, target_act):
+    def learn(self, obs, next_obs, action, reward, done, target_act):
         loss = self.criterion(self.last_output, torch.tensor([target_act]))
         loss.backward(retain_graph=True)
         self.optimizer.step()
@@ -66,7 +70,7 @@ class Agent_LSTM(Agent):
         with open(configs_path, "w") as f:
             json.dump(configs, f)
 
-    def load(self, path, device='cpu'):
+    def load(self, path):
         self.model.load_state_dict(torch.load(path, map_location=device))
 
 
