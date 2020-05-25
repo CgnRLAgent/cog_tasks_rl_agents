@@ -6,9 +6,9 @@ from DQN.DQN_model import Agent_DQN
 from common.utils import train, test, save_train_res, load_train_res, train_results_plots
 import numpy as np
 
-env = gym.make('seq_prediction-v0', size=50, p=0.5)
+env = gym.make('12_AX_CPT-v0',size=100,prob_target=0.5, prob_12=0.1)
 
-N_tr = 2000
+N_tr = 10000
 N_tst = 1000
 
 BATCH_SIZE = 32
@@ -29,5 +29,5 @@ agent = Agent_DQN(env.observation_space.n, env.action_space.n, MEMORY_CAPACITY, 
 
 res=train(env,agent,N_tr,seed=123)
 # save the training records, including every episode's reward, action accuracy and f1 over iteration
-save_train_res('./save/seq_pred/DQN_size_50',res)
+save_train_res('save/12_ax_cpt/DQN',res)
 test(env,agent,N_tst,seed=123)
