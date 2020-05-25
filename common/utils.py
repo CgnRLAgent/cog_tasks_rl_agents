@@ -79,7 +79,7 @@ def load_train_res(path):
     return r[0], r[1], r[2]
 
 
-def train_results_plots(dir, figname, names, numbers, smooth=51):
+def train_results_plots(dir, figname, names, numbers, smooth=51, xlim=None):
     """
     plots training results with iterations: rewards, accuracies, f1-score (every n iterations)
     :param dir: save the figures to
@@ -127,6 +127,8 @@ def train_results_plots(dir, figname, names, numbers, smooth=51):
     assert len(f1) == len(names)
     plt.title('F1-score')
     for f in f1:
+        if xlim is not None:
+            f = f[:xlim]
         plt.plot(_smooth(f))
     plt.legend(names, loc='lower right')
     plt.xlabel('iterations')

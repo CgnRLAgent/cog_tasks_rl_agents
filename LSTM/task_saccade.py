@@ -6,9 +6,9 @@ import torch
 
 torch.manual_seed(123)
 
-env = gym.make('Simple_Copy-v0', n_char=5, size=100)
+env = gym.make('Saccade-v0', go_reward=7)
 
-N_tr = 100
+N_tr = 1000
 N_tst = 1000
 
 n_hidden = 10
@@ -18,5 +18,5 @@ agent = Agent_LSTM(env.observation_space.n, env.action_space.n, n_hidden, lr, n_
 
 res = train(env, agent, N_tr, seed=123)
 # save the training records, including every episode's reward, action accuracy and f1 over iteration
-save_train_res('./save/simple_cp/LSTM', res)
+save_train_res('./save/saccade/LSTM', res)
 test(env, agent, N_tst, seed=123)
