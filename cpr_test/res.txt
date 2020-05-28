@@ -1,0 +1,54 @@
+----------
+FULL MODE:
+Agent work on cpu
+iteration 1000: train ep_acc=0.157000, f1=0.780463; validation(full) ep_acc=0.517000, f1=0.901921; validation(minor) ep_acc=0.492000, f1=0.895623
+iteration 2000: train ep_acc=0.652000, f1=0.931490; validation(full) ep_acc=0.835000, f1=0.966025; validation(minor) ep_acc=0.860000, f1=0.972692
+iteration 3000: train ep_acc=0.903000, f1=0.980227; validation(full) ep_acc=0.937000, f1=0.988260; validation(minor) ep_acc=0.949000, f1=0.990686
+iteration 4000: train ep_acc=0.967000, f1=0.993746; validation(full) ep_acc=0.988000, f1=0.997695; validation(minor) ep_acc=0.988000, f1=0.997689
+iteration 5000: train ep_acc=0.979000, f1=0.996121; validation(full) ep_acc=0.985000, f1=0.997181; validation(minor) ep_acc=0.983000, f1=0.997016
+iteration 6000: train ep_acc=0.992000, f1=0.998590; validation(full) ep_acc=1.000000, f1=1.000000; validation(minor) ep_acc=1.000000, f1=1.000000
+iteration 7000: train ep_acc=0.992000, f1=0.998444; validation(full) ep_acc=1.000000, f1=1.000000; validation(minor) ep_acc=0.996000, f1=0.999314
+iteration 8000: train ep_acc=0.995000, f1=0.999029; validation(full) ep_acc=1.000000, f1=1.000000; validation(minor) ep_acc=1.000000, f1=1.000000
+iteration 9000: train ep_acc=0.995000, f1=0.999073; validation(full) ep_acc=1.000000, f1=1.000000; validation(minor) ep_acc=1.000000, f1=1.000000
+iteration 10000: train ep_acc=0.999000, f1=0.999778; validation(full) ep_acc=0.997000, f1=0.999467; validation(minor) ep_acc=0.995000, f1=0.999111
+iteration 11000: train ep_acc=0.993000, f1=0.998320; validation(full) ep_acc=0.993000, f1=0.998781; validation(minor) ep_acc=1.000000, f1=1.000000
+iteration 12000: train ep_acc=1.000000, f1=1.000000; validation(full) ep_acc=1.000000, f1=1.000000; validation(minor) ep_acc=1.000000, f1=1.000000
+iteration 13000: train ep_acc=0.995000, f1=0.999035; validation(full) ep_acc=0.998000, f1=0.999600; validation(minor) ep_acc=1.000000, f1=1.000000
+iteration 14000: train ep_acc=0.999000, f1=0.999822; validation(full) ep_acc=1.000000, f1=1.000000; validation(minor) ep_acc=1.000000, f1=1.000000
+iteration 15000: train ep_acc=0.997000, f1=0.999467; validation(full) ep_acc=1.000000, f1=1.000000; validation(minor) ep_acc=1.000000, f1=1.000000
+----------
+MAJOR MODE (1):
+Agent work on cpu
+iteration 1000: train ep_acc=0.249000, f1=0.803137; validation(full) ep_acc=0.441000, f1=0.873926; validation(minor) ep_acc=0.156000, f1=0.784772
+iteration 2000: train ep_acc=0.758000, f1=0.952379; validation(full) ep_acc=0.695000, f1=0.932854; validation(minor) ep_acc=0.230000, f1=0.823541
+iteration 3000: train ep_acc=0.941000, f1=0.989010; validation(full) ep_acc=0.758000, f1=0.945795; validation(minor) ep_acc=0.301000, f1=0.842141
+iteration 4000: train ep_acc=0.988000, f1=0.997504; validation(full) ep_acc=0.814000, f1=0.959165; validation(minor) ep_acc=0.391000, f1=0.863590
+iteration 5000: train ep_acc=0.990000, f1=0.998254; validation(full) ep_acc=0.837000, f1=0.964089; validation(minor) ep_acc=0.421000, f1=0.871241
+iteration 6000: train ep_acc=0.997000, f1=0.999467; validation(full) ep_acc=0.807000, f1=0.958137; validation(minor) ep_acc=0.351000, f1=0.855539
+iteration 7000: train ep_acc=0.998000, f1=0.999644; validation(full) ep_acc=0.813000, f1=0.957999; validation(minor) ep_acc=0.352000, f1=0.851029
+iteration 8000: train ep_acc=1.000000, f1=1.000000; validation(full) ep_acc=0.836000, f1=0.965187; validation(minor) ep_acc=0.418000, f1=0.875598
+iteration 9000: train ep_acc=0.991000, f1=0.997698; validation(full) ep_acc=0.862000, f1=0.970119; validation(minor) ep_acc=0.491000, f1=0.888798
+iteration 10000: train ep_acc=0.997000, f1=0.999306; validation(full) ep_acc=0.840000, f1=0.966270; validation(minor) ep_acc=0.438000, f1=0.883790
+iteration 11000: train ep_acc=1.000000, f1=1.000000; validation(full) ep_acc=0.863000, f1=0.971015; validation(minor) ep_acc=0.479000, f1=0.890225
+iteration 12000: train ep_acc=0.994000, f1=0.998611; validation(full) ep_acc=0.877000, f1=0.973621; validation(minor) ep_acc=0.539000, f1=0.902917
+iteration 13000: train ep_acc=1.000000, f1=1.000000; validation(full) ep_acc=0.851000, f1=0.969637; validation(minor) ep_acc=0.494000, f1=0.894060
+iteration 14000: train ep_acc=1.000000, f1=1.000000; validation(full) ep_acc=0.840000, f1=0.963348; validation(minor) ep_acc=0.421000, f1=0.867566
+iteration 15000: train ep_acc=1.000000, f1=1.000000; validation(full) ep_acc=0.851000, f1=0.968193; validation(minor) ep_acc=0.438000, f1=0.880008
+----------
+MAJOR MODE (1):
+Agent work on cpu
+iteration 1000: train ep_acc=0.367000, f1=0.837445; validation(full) ep_acc=0.384000, f1=0.812425; validation(minor) ep_acc=0.091000, f1=0.667190
+iteration 2000: train ep_acc=0.861000, f1=0.971831; validation(full) ep_acc=0.528000, f1=0.840857; validation(minor) ep_acc=0.102000, f1=0.663715
+iteration 3000: train ep_acc=0.973000, f1=0.994876; validation(full) ep_acc=0.548000, f1=0.832253; validation(minor) ep_acc=0.079000, f1=0.643041
+iteration 4000: train ep_acc=0.991000, f1=0.998324; validation(full) ep_acc=0.549000, f1=0.834516; validation(minor) ep_acc=0.120000, f1=0.652394
+iteration 5000: train ep_acc=0.992000, f1=0.998346; validation(full) ep_acc=0.576000, f1=0.845501; validation(minor) ep_acc=0.134000, f1=0.668294
+iteration 6000: train ep_acc=0.995000, f1=0.999079; validation(full) ep_acc=0.580000, f1=0.843195; validation(minor) ep_acc=0.142000, f1=0.665267
+iteration 7000: train ep_acc=0.999000, f1=0.999822; validation(full) ep_acc=0.583000, f1=0.850314; validation(minor) ep_acc=0.153000, f1=0.675877
+iteration 8000: train ep_acc=0.994000, f1=0.998790; validation(full) ep_acc=0.570000, f1=0.840139; validation(minor) ep_acc=0.102000, f1=0.659827
+iteration 9000: train ep_acc=1.000000, f1=1.000000; validation(full) ep_acc=0.577000, f1=0.841989; validation(minor) ep_acc=0.132000, f1=0.667406
+iteration 10000: train ep_acc=0.996000, f1=0.999302; validation(full) ep_acc=0.563000, f1=0.841604; validation(minor) ep_acc=0.097000, f1=0.654855
+iteration 11000: train ep_acc=0.997000, f1=0.999467; validation(full) ep_acc=0.580000, f1=0.844760; validation(minor) ep_acc=0.147000, f1=0.667862
+iteration 12000: train ep_acc=1.000000, f1=1.000000; validation(full) ep_acc=0.581000, f1=0.844246; validation(minor) ep_acc=0.141000, f1=0.664453
+iteration 13000: train ep_acc=0.997000, f1=0.999422; validation(full) ep_acc=0.568000, f1=0.830416; validation(minor) ep_acc=0.080000, f1=0.637620
+iteration 14000: train ep_acc=1.000000, f1=1.000000; validation(full) ep_acc=0.585000, f1=0.832781; validation(minor) ep_acc=0.141000, f1=0.655626
+iteration 15000: train ep_acc=1.000000, f1=1.000000; validation(full) ep_acc=0.589000, f1=0.844058; validation(minor) ep_acc=0.154000, f1=0.657216
