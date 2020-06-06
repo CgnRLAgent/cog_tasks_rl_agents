@@ -17,10 +17,11 @@ All agents inherit from the basic `Agent` class in [agent.py](common/agent.py). 
 
 
 ## Agents
-5 agents are implemented in this project:
+6 agents are implemented in this project:
 * AuGMEnT
 * LSTM
 * DQN
+* DRQN (DQN + LSTM)
 * HER
 * Monte Carlo
 
