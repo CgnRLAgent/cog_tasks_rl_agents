@@ -8,8 +8,8 @@ torch.manual_seed(123)
 
 env = gym.make('12_AX_CPT-v0', size=100, prob_target=0.5, prob_12=0.1)
 
-N_tr = 5000
-N_tst = 1000
+N_tr = 1000
+N_tst = 200
 
 n_hidden = 20
 n_layers = 2
